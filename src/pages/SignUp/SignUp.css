@@ -1,0 +1,29 @@
+.main-signup-component {
+    height: 100vh;
+    padding: 20px;
+}
+
+.sub-signup-component {
+    width: 40%;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.signup-input {
+    width: 100%;
+    outline: none;
+}
+
+.btn-eye {
+    top:70%
+}
+
+@media screen and (max-width: 768px) {
+    .main-signup-component {
+        height: 100vh;
+        padding: 20px;
+    }
+    .sub-signup-component {
+        width: 100vw;
+        box-shadow: 1px 2px 10px rgb(10, 10, 10);
+    }
+}

@@ -1,0 +1,51 @@
+.today-notification {
+    font-size: 30px;
+    margin-left: 30px;
+    color: black;
+    width: 50px;
+}
+
+.today-ecommerce-component {
+    overflow: scroll;
+}
+
+.today-ecommerce-option-task {
+    background-color: whitesmoke;
+    height: 15px;
+    width: 25px;
+    border-radius: 5px;
+}
+
+.today-main-list-color-box {
+    height: 12px;
+    width: 12px;
+    border-radius: 3px;
+}
+
+.input-save-btn {
+    width: 20%;
+}
+
+.icon-main-container {
+    height: 60vh;
+}
+
+@media (max-width: 1000px) {
+    .input-save-btn {
+        width: 40%;
+    }
+
+    .today-main-container {
+        padding: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .input-save-btn {
+        width: 100%;
+    }
+
+    .today-main-container {
+        padding: 0;
+    }
+}

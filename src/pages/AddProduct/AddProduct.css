@@ -1,0 +1,71 @@
+.add-task-input {
+    outline: none;
+    height: 5vh;
+    padding-left: 10px;
+}
+
+.add-task-description {
+    height: 15vh;
+    width: 100%;
+    resize: none;
+    background-color: #f4f4f4;
+    border: 2px solid #ececec;
+    outline: none;
+    color: #959595;
+}
+
+.tag-add-task {
+    margin-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 100%;
+}
+
+.add-date {
+    height: 5vh;
+    width: 15vw;
+}
+
+.add-list {
+    height: 5vh;
+    width: 15vw;
+    margin-left: 7px;
+}
+
+@media screen and (max-width: 768px) {
+    .tag-add-task {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .sub-main-task {
+        padding: 0;
+        margin: 0;
+    }
+
+    .main-add-task {
+        width: 90%;
+    }
+
+    .add-task-input,
+    .add-task-description,
+    .add-date,
+    .add-list {
+        width: 100%;
+    }
+
+    .add-list {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .add-date {
+        margin: 0;
+    }
+
+    .add-task-btn {
+        width: 100%;
+    }
+}

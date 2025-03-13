@@ -1,0 +1,59 @@
+.home-main-component {
+    height: 100vh;
+    column-gap: 15px;
+}
+
+.home-text {
+    top: 30px;
+    left: 30px;
+    color: white;
+}
+
+.home-image-text {
+    background-color: #111111;
+}
+
+.image {
+    position: relative;
+}
+
+.home-get-start {
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .home-main-component {
+        flex-direction: column;
+    }
+
+    .home-image-text {
+        display: none;
+    }
+
+    .home-get-start {
+        border: none !important;
+        width: 100vw;
+    }
+
+    .login-sub-content {
+        width: 100vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .home-main-component {
+        padding: 0px;
+    }
+
+    .home-get-start {
+        padding: 15px;
+    }
+
+    .home-text {
+        font-size: 1rem;
+    }
+
+    .home-btn {
+        font-size: 0.9rem;
+    }
+}

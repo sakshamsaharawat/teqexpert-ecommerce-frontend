@@ -1,0 +1,11 @@
+@import url('/src/styles/global.css');
+@import url('/src/styles//variables.css');
+
+* {
+    padding: 0;
+    margin: 0;
+    color: #6c6a6a;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+}
