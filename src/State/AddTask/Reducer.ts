@@ -38,14 +38,14 @@ export const productReducer = (state: ProductInitialState = initialState, action
             }
         case UPDATE_CART_SUCCESS:
             if (action.payload.isAdded) {
-                const isProductInCart = state.cart.find(cartItem => cartItem.product_id === action.payload.product_id);
+                const isProductInCart = state.cart.find(cartItem => cartItem.product_id === action.payload.product._id);
                 if (isProductInCart) {
                     return {
                         ...state,
                         isLoading: false,
                         error: null,
                         cart: state.cart.map(cartItem => {
-                            if (cartItem.product_id === action.payload.product_id) {
+                            if (cartItem.product_id === action.payload.product._id) {
                                 return { ...cartItem, quantity: cartItem.quantity + 1 }
                             } else {
                                 return cartItem
@@ -58,21 +58,22 @@ export const productReducer = (state: ProductInitialState = initialState, action
                         isLoading: false,
                         error: null,
                         cart: [...state.cart, {
-                            product_id: action.payload.product_id,
+                            product_id: action.payload.product._id,
                             user_id: action.payload.user_id,
                             quantity: 1,
-                            price: action.payload.price
+                            price: action.payload.price,
+                            product: action.payload.product
                         }]
                     }
                 }
             } else {
-                const isProductInCart = state.cart.find(cartItem => cartItem.product_id === action.payload.product_id);
+                const isProductInCart = state.cart.find(cartItem => cartItem.product_id === action.payload.product._id);
                 if (isProductInCart && isProductInCart.quantity <= 1) {
                     return {
                         ...state,
                         isLoading: false,
                         error: null,
-                        cart: state.cart.filter(cartItem => cartItem.product_id === action.payload.product_id)
+                        cart: state.cart.filter(cartItem => cartItem.product_id !== action.payload.product._id)
                     }
                 } else if(isProductInCart && isProductInCart.quantity > 1) {
                     return {
@@ -80,7 +81,7 @@ export const productReducer = (state: ProductInitialState = initialState, action
                         isLoading: false,
                         error: null,
                         cart: state.cart.map(cartItem => {
-                            if (cartItem.product_id === action.payload.product_id) {
+                            if (cartItem.product_id === action.payload.product._id) {
                                 return { ...cartItem, quantity: cartItem.quantity - 1 }
                             } else {
                                 return cartItem

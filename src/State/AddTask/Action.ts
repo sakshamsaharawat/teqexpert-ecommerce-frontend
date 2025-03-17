@@ -53,14 +53,14 @@ export const getCart = () => async (dispatch: Dispatch) => {
 }
 
 const updateCartRequest = () => ({ type: UPDATE_CART_REQUEST });
-const updateCartSuccess = (product_id: string, user_id: string | undefined, isAdded: boolean) => ({ type: UPDATE_CART_SUCCESS, payload: { product_id, user_id, isAdded } });
+const updateCartSuccess = (product: ProductItem, user_id: string | undefined, isAdded: boolean) => ({ type: UPDATE_CART_SUCCESS, payload: { product, user_id, isAdded } });
 const updateCartFailure = (error: string) => ({ type: UPDATE_CART_FAILURE, payload: error });
 
 export const updateCart = (product: ProductItem, isAdded: boolean, user_id: string | undefined) => async (dispatch: Dispatch) => {
     dispatch(updateCartRequest());
     try {
         await axiosInstance.patch(`cart`, { productId: product._id, isAdded });
-        dispatch(updateCartSuccess(product._id, user_id, isAdded));
+        dispatch(updateCartSuccess(product, user_id, isAdded));
     } catch (error: any) {
         dispatch(updateCartFailure(error.message));
         showError(error.data.message);

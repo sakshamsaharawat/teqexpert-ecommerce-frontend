@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './Cart.css';
-import { getCart, getProduct, updateCart } from '../../State/AddTask/Action';
+import { getCart, updateCart } from '../../State/AddTask/Action';
 import { ThunkDispatch } from 'redux-thunk';
 import { RootState } from '../../store';
 import { AnyAction } from 'redux';
@@ -15,7 +15,6 @@ const Cart: React.FC = () => {
 
   useEffect(() => {
     dispatch(getCart());
-    dispatch(getProduct())
   }, [dispatch])
 
   const addToCart = (product: ProductItem) => {
@@ -30,28 +29,28 @@ const Cart: React.FC = () => {
     <div>
       <form>
         <section className='today-main-section p-4 mt-2'>
-          {Array.isArray(productReducer?.products) && productReducer?.products?.length > 0 ? (
+          {Array.isArray(productReducer.cart) && productReducer.cart?.length > 0 ? (
             <>
               <Grid container spacing={2} sx={{ mt: 2 }}>
-                {productReducer?.products.map((product, index) => (
+                {productReducer?.cart.map((cart, index) => (
                   <>
-                    {productReducer.cart.find(cartItem => cartItem.product_id === product._id)?.quantity && <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                    {<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                       <Card sx={{ maxWidth: 250, boxShadow: 2, borderRadius: 2, m: 2 }}>
-                        <CardMedia component="img" height="200" image={product.image_url} alt={product.title} />
+                        <CardMedia component="img" height="200" image={cart?.product?.image_url} alt={cart?.product?.title} />
                         <CardContent>
                           <Typography variant="h6" fontWeight="bold">
-                            {product.title}
+                            {cart?.product?.title}
                           </Typography>
                           <Typography variant="body2" color="text.secondary">
-                            Description: {product.description}
+                            Description: {cart?.product?.description}
                           </Typography>
                           <Typography variant="body1" fontWeight="bold" sx={{ mt: 1 }}>
-                            Price: ${product.price}
+                            Price: ${cart?.product?.price}
                           </Typography>
                           <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", mt: 2 }}>
-                            <Button variant="contained" size="small" onClick={() => addToCart(product)}>+</Button>
-                            <Typography sx={{ mx: 2 }}>{productReducer.cart.find(cartItem => cartItem.product_id === product._id)?.quantity || 0}</Typography>
-                            <Button variant="contained" size="small" onClick={() => removeToCart(product)}>-</Button>
+                            <Button variant="contained" size="small" onClick={() => addToCart(cart?.product)}>+</Button>
+                            <Typography sx={{ mx: 2 }}>{productReducer.cart.find(cartItem => cartItem.product_id === cart?.product?._id)?.quantity || 0}</Typography>
+                            <Button variant="contained" size="small" onClick={() => removeToCart(cart?.product)}>-</Button>
                           </Box>
                         </CardContent>
                       </Card>
@@ -60,9 +59,8 @@ const Cart: React.FC = () => {
                 ))}
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3}>
-                Total Amount: {productReducer.cart.reduce((sum, cartItem) => {
-                  const product = productReducer.products.find(product => product._id === cartItem.product_id);
-                  return sum + (product ? cartItem.quantity * product.price : 0);
+                Total Amount: {productReducer.cart.reduce((total, item) => {
+                  return total + item.quantity * item.product?.price;
                 }, 0)}
               </Grid>
             </>

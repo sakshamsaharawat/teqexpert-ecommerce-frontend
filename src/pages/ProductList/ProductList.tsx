@@ -29,7 +29,10 @@ const ProductList: React.FC = () => {
   }
 
   const removeToCart = (product: ProductItem) => {
-    dispatch(updateCart(product, false, authReducer?.user?._id));
+    const cartProduct = productReducer.cart.find(cartItem => cartItem.product_id === product._id);
+    if (cartProduct && cartProduct?.quantity > 0) {
+      dispatch(updateCart(product, false, authReducer?.user?._id));
+    }
   }
 
   return (
